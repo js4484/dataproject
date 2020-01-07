@@ -16,7 +16,7 @@ const cache = new InMemoryCache({
   dataIdFromObject: object => object._id || null
 });
 
-const httpLink = createHttpLink({
+const httpLink = createHttpLink({ 
   // uri: "http://localhost:5000/graphql",
   headers: {
     // pass our token into the header of each request
