@@ -6,6 +6,8 @@ const axios = require('axios');
 const awsKey = require("../../../config/keys").AWSKey;
 
 const {
+  GraphQLString,
+  GraphQLInt,
   GraphQLObjectType,
   GraphQLList,
   GraphQLID,
@@ -27,10 +29,30 @@ const RootQueryType = new GraphQLObjectType({
     
     objects: {
         type: new GraphQLList(ObjectType),
+
         resolve() {
           return Object.find({});
         }
       },
+    objectsByDept: {
+      type: GraphQLInt,
+      args: {
+        department: {
+          type: GraphQLString
+        }
+      },
+      resolve(_, args) {
+        // let objects = Object.find({department: args.department});
+        // let count = objects.length;
+        async function getObjects(dept) {
+          const objects = await Object.find({ department: dept })
+
+          return objects.length;
+        };
+
+        return getObjects(args.department);
+      }
+    },
     object: {
       type: ObjectType,
       args: {
