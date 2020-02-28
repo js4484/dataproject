@@ -75,8 +75,8 @@ async function seedObjects() {
                        returnObj.accessionYear = parseInt(aYear);
                      }
 
-                     if (returnObj.accessionYear)
-                       returnObj.objectID = res.data.objectID;
+                     if (returnObj.accessionYear) 
+                     returnObj.objectID = res.data.objectID;
                      returnObj.isHighlight = res.data.isHighlight;
 
                      returnObj.primaryImage = res.data.primaryImage;
